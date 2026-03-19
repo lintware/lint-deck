@@ -1,52 +1,108 @@
 # 🎴 Lint Deck
 
-**AI-powered hacking deck** — an open-source portable pentesting platform that lets Claude do the heavy lifting.
+**AI-powered pentesting toolkit on portable hardware** — Claude as your operator, Flipper Zero as your hands.
+
+![Status](https://img.shields.io/badge/status-early%20development-yellow)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Platform](https://img.shields.io/badge/platform-uConsole%20%7C%20Mecha%20Comet-lightgrey)
 
 ## What is this?
 
-Lint Deck combines [OpenClaw](https://github.com/openclaw/openclaw) with portable hardware to create an autonomous pentesting rig. Point it at a target, and Claude handles tool selection, payload crafting, and attack execution.
+Lint Deck is an open-source portable pentesting platform that combines [OpenClaw](https://github.com/openclaw/openclaw) (AI agent runtime) with handheld hardware. Point it at a target — Claude handles reconnaissance, tool selection, payload crafting, and attack execution autonomously.
+
+> _"Like having JARVIS, but for hacking."_
+
+## Architecture
+
+```
+┌─────────────────────────────────────────────┐
+│            Lint Deck (Portable)              │
+│                                             │
+│  ┌─────────────┐    ┌──────────────────┐    │
+│  │  OpenClaw   │◄──►│  Claude (Opus/   │    │
+│  │  Runtime    │    │  Sonnet)         │    │
+│  └──────┬──────┘    └──────────────────┘    │
+│         │                                   │
+│  ┌──────┴──────────────────────────────┐    │
+│  │         Tool Orchestration          │    │
+│  ├─────────┬──────────┬────────────────┤    │
+│  │         │          │                │    │
+│  ▼         ▼          ▼                ▼    │
+│ 📡        📻        📶              🎯    │
+│ Flipper   ESP32     WiFi            Camera  │
+│ Zero      Module    Tools           (CV)    │
+│ RF/NFC/   Pineapple Aircrack-ng     Target  │
+│ IR/BadUSB emulation Metasploit      ID      │
+└─────────────────────────────────────────────┘
+```
 
 ## Hardware
 
-- **Brain:** uConsole / Mecha Comet running OpenClaw
-- **RF/HID:** Flipper Zero, Kiisu board
-- **WiFi:** ESP32 / LilyGo T-Embed (WiFi Pineapple emulation)
-- **Camera:** Built-in camera for visual target identification
+| Component | Device | Role |
+|-----------|--------|------|
+| **Brain** | uConsole / Mecha Comet | Runs OpenClaw + Claude |
+| **RF/HID** | Flipper Zero, Kiisu board | Sub-GHz, NFC, IR, BadUSB |
+| **WiFi** | ESP32 / LilyGo T-Embed | WiFi scanning, deauth, evil twin |
+| **Camera** | Built-in / USB | Visual target identification |
 
-## How it works
+## How It Works
 
-1. **Identify** — Camera captures the target device; Claude analyzes it
-2. **Prepare** — Claude selects the right tools, installs dependencies, flashes attack modules
-3. **Execute** — Automated attacks via Metasploit, custom scripts, RF replay, WiFi deauth, etc.
-4. **Report** — Full findings documented automatically
+1. **🔍 Identify** — Camera captures the target; Claude analyzes the device type, ports, and attack surface
+2. **🧰 Prepare** — Claude selects the right tools, installs dependencies, configures attack modules
+3. **⚡ Execute** — Automated attacks via Metasploit, RF replay, WiFi deauth, BadUSB payloads, etc.
+4. **📝 Report** — Full findings documented automatically with evidence and remediation steps
 
 ## Software Stack
 
-- **OpenClaw** — AI agent runtime (Claude as the operator)
-- **Claude Shannon Skill** — Pentesting skill pack for Claude
-- **Metasploit Framework** — Exploit execution
-- **Aircrack-ng / WiFi tools** — Wireless attacks
-- **Flipper Zero CLI** — RF, NFC, IR, BadUSB automation
-- **Custom ESP32 firmware** — WiFi scanning, deauth, pineapple mode
+| Tool | Purpose |
+|------|---------|
+| [OpenClaw](https://github.com/openclaw/openclaw) | AI agent runtime — Claude as the operator |
+| Claude Shannon Skill | Pentesting skill pack (recon, exploit, report) |
+| Metasploit Framework | Exploit development and execution |
+| Aircrack-ng | WiFi auditing and WPA cracking |
+| Flipper Zero CLI | RF, NFC, IR, BadUSB automation |
+| Custom ESP32 firmware | WiFi scanning, deauth, pineapple mode |
+| Nmap / Masscan | Network discovery and port scanning |
 
 ## Vision
 
-Traditionally, pentesting requires years of practice memorizing tools and techniques. Lint Deck democratizes offensive security by letting AI handle the tooling while you focus on strategy.
+Pentesting traditionally requires years memorizing tools, flags, and techniques. Lint Deck flips the model: **AI handles the tooling, you handle the strategy.** Tell Claude what you want to test — it figures out the how.
 
-> _"Like having Iron Man's JARVIS, but for hacking."_
+Use cases:
+- **Red team engagements** — Portable rig for physical + wireless assessments
+- **CTF competitions** — AI-assisted flag hunting
+- **Security education** — Learn offensive security with an AI tutor explaining each step
+- **IoT auditing** — Quick assessments of smart devices, BLE peripherals, RF remotes
 
 ## Status
 
 🚧 **Early development** — Hardware selection and skill design phase.
 
+### Roadmap
+
+- [ ] Core OpenClaw skill for pentesting workflows
+- [ ] Flipper Zero CLI integration
+- [ ] ESP32 WiFi module firmware
+- [ ] Camera-based target identification
+- [ ] Metasploit session management
+- [ ] Report generation templates
+- [ ] uConsole build guide
+- [ ] Mecha Comet build guide
+
 ## Contributing
 
-This is an open-source project by [Lintware](https://github.com/lintware). PRs and ideas welcome.
+This is an open-source project by [Lintware](https://github.com/lintware). PRs, ideas, and hardware suggestions welcome.
 
 ## ⚠️ Disclaimer
 
-This tool is for **authorized security testing and educational purposes only**. Always obtain proper authorization before testing any systems you don't own. Unauthorized access to computer systems is illegal.
+This tool is for **authorized security testing and educational purposes only.** Always obtain proper written authorization before testing any systems you don't own. Unauthorized access to computer systems is illegal under the Computer Fraud and Abuse Act (CFAA) and equivalent laws worldwide.
+
+The authors are not responsible for any misuse of this software.
 
 ## License
 
 MIT
+
+---
+
+Built with 🔥 by [Lintware](https://github.com/lintware)
