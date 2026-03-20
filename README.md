@@ -91,7 +91,7 @@ Use cases:
 
 ## Contributing
 
-This is an open-source project by [Lintware](https://github.com/lintware). PRs, ideas, and hardware suggestions welcome.
+This is an open-source project by [Lint Labs](https://github.com/lintware). PRs, ideas, and hardware suggestions welcome.
 
 ## ⚠️ Disclaimer
 
@@ -105,4 +105,4 @@ MIT
 
 ---
 
-Built with 🔥 by [Lintware](https://github.com/lintware)
+Built with 🔥 by [Lint Labs](https://github.com/lintware)
